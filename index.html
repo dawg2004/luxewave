@@ -1,0 +1,1019 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">import React, { useState, useEffect } from 'react';</p>
+<p class="p1">import { Activity, Shield, AlertTriangle, Power, Settings, Smartphone, Wifi, Zap, HeartPulse, Brain, Sun, Moon, Coffee, Info, Menu, X, Check, Home, LogOut, Bell, Laptop, Tv } from 'lucide-react';</p>
+<p class="p2"><br></p>
+<p class="p1">export default function App() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [currentView, setCurrentView] = useState('landing');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const navigateTo = (view) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setCurrentView(view);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.scrollTo(0, 0);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="min-h-screen bg-[#02020a] text-gray-100 font-sans selection:bg-cyan-500/30 overflow-hidden flex flex-col relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* 共通のサイバー背景 */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;SharedBackground /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* 表示の切り替え */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{currentView === 'landing' &amp;&amp; &lt;LandingPage navigateTo={navigateTo} currentView={currentView} /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{currentView === 'about' &amp;&amp; &lt;AboutPage navigateTo={navigateTo} currentView={currentView} /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{currentView === 'news' &amp;&amp; &lt;NewsPage navigateTo={navigateTo} currentView={currentView} /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{currentView === 'member' &amp;&amp; &lt;MemberPage navigateTo={navigateTo} currentView={currentView} /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{currentView === 'webapp' &amp;&amp; &lt;Dashboard navigateTo={navigateTo} currentView={currentView} /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// --- Shared Background ---</p>
+<p class="p1">function SharedBackground() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="fixed inset-0 z-0 pointer-events-none w-full h-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* 1. 指定された背景画像を固定配置（透明度100%で鮮明に） */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;img<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>src="https://drive.google.com/thumbnail?id=1Zk61g0YB7V-gusB9uzPfqD7PAvYG2kNy&amp;sz=w2000"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>alt="Background"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>className="absolute inset-0 w-full h-full object-cover opacity-100"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>/&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* 2. テキストを見やすくするための暗いオーバーレイ（50%へ薄くして背景を見せる） */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="absolute inset-0 bg-[#02020a]/50"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* 3. サイバー感を追加するエフェクト */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-600/10 rounded-full mix-blend-screen filter blur-[120px] animate-pulse"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-fuchsia-600/5 rounded-full mix-blend-screen filter blur-[150px]"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* Cyber Grid */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-30"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* Floating Elements */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="absolute top-[15%] left-[10%] w-24 h-24 rounded-full border border-cyan-500/20 animate-[spin_10s_linear_infinite]"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="absolute bottom-[25%] left-[15%] w-10 h-10 rounded-full bg-gradient-to-tr from-fuchsia-400 to-purple-600 opacity-40 shadow-[0_0_20px_rgba(232,121,249,0.5)]"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">// --- Shared Navigation Component ---</p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">function Navigation({ navigateTo, currentView }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const handlePriceClick = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setIsMobileMenuOpen(false);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentView !== 'landing') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>navigateTo('landing');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('pricing-section')?.scrollIntoView({ behavior: 'smooth' });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, 100);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('pricing-section')?.scrollIntoView({ behavior: 'smooth' });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const navItems = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ label: 'ホーム', action: () =&gt; { currentView === 'landing' ? window.scrollTo({top: 0, behavior: 'smooth'}) : navigateTo('landing'); setIsMobileMenuOpen(false); }, active: currentView === 'landing' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ label: 'ABOUT', action: () =&gt; { navigateTo('about'); setIsMobileMenuOpen(false); }, active: currentView === 'about' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ label: 'プライス', action: handlePriceClick, active: false },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ label: 'Blog', isExternal: true, href: 'https://note.com/luxewave/n/nc021cb5e0c3d?sub_rt=share_pw' },<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ label: '会員ページ', action: () =&gt; { navigateTo('member'); setIsMobileMenuOpen(false); }, active: currentView === 'member' },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* 常に画面上部に固定するヘッダー */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;nav className="fixed top-0 left-0 w-full z-50 bg-[#0a0a1a]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* 上下の余白を限界まで狭く */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{/* Logo */}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>onClick={() =&gt; { navigateTo('landing'); setIsMobileMenuOpen(false); }}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>className="cursor-pointer hover:opacity-80 transition-opacity relative z-20 flex items-center"</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;img<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>src="https://drive.google.com/thumbnail?id=1fESk6eO2fWtMbzFEp1IkJsb4tYfQ5hke&amp;sz=w1000"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>alt="LUXE WAVE"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="h-5 md:h-6 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>{/* Desktop Menu */}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;ul className="hidden lg:flex items-center gap-2 xl:gap-4 text-xs font-bold tracking-widest"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{navItems.map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;li key={idx}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{item.isExternal ? (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;a<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>href={item.href}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>target="_blank"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>rel="noopener noreferrer"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className="border border-white/20 px-3 py-1.5 transition-all rounded-sm backdrop-blur-sm whitespace-nowrap bg-white/5 text-white hover:bg-white/20 hover:border-white/40 block text-xs"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{item.label}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onClick={item.action}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className={`border border-white/20 px-3 py-1.5 transition-all rounded-sm backdrop-blur-sm whitespace-nowrap text-xs ${item.active ? 'bg-white/20 text-cyan-300 border-white/40' : 'bg-white/5 text-white hover:bg-white/20 hover:border-white/40'}`}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{item.label}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li className="ml-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>onClick={() =&gt; { navigateTo('webapp'); setIsMobileMenuOpen(false); }}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>className="bg-gradient-to-r from-fuchsia-600 to-cyan-500 text-white px-4 py-1.5 rounded-sm border border-transparent hover:shadow-[0_0_20px_rgba(34,211,238,0.5)] hover:-translate-y-0.5 transition-all font-black flex items-center gap-2 whitespace-nowrap text-xs"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;Activity size={14} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Web App</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ul&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>{/* Mobile Menu Toggle Button */}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>className="lg:hidden text-white p-1 focus:outline-none relative z-20"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>onClick={() =&gt; setIsMobileMenuOpen(!isMobileMenuOpen)}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{isMobileMenuOpen ? &lt;X size={24} /&gt; : &lt;Menu size={24} /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Mobile Menu Dropdown */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className={`lg:hidden absolute top-full left-0 w-full bg-[#0a0a1a]/95 backdrop-blur-3xl border-b border-white/10 shadow-2xl transition-all duration-300 origin-top overflow-hidden ${isMobileMenuOpen ? 'max-h-[500px] opacity-100 border-t border-white/10' : 'max-h-0 opacity-0 pointer-events-none'}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;ul className="flex flex-col p-6 gap-4 text-base font-bold tracking-widest"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{navItems.map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;li key={idx} className="w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{item.isExternal ? (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;a<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>href={item.href}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>target="_blank"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>rel="noopener noreferrer"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onClick={() =&gt; setIsMobileMenuOpen(false)}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className="w-full text-left border border-white/20 px-5 py-3 transition-all rounded-sm backdrop-blur-sm bg-white/5 text-white hover:bg-white/20 hover:border-white/40 block"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{item.label}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onClick={item.action}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className={`w-full text-left border border-white/20 px-5 py-3 transition-all rounded-sm backdrop-blur-sm ${item.active ? 'bg-white/20 text-cyan-300 border-white/40 shadow-[inset_4px_0_0_rgba(34,211,238,1)]' : 'bg-white/5 text-white hover:bg-white/20 hover:border-white/40'}`}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{item.label}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li className="w-full mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>onClick={() =&gt; { navigateTo('webapp'); setIsMobileMenuOpen(false); }}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>className="w-full justify-center bg-gradient-to-r from-fuchsia-600 to-cyan-500 text-white px-5 py-4 rounded-sm border border-transparent hover:shadow-[0_0_20px_rgba(34,211,238,0.5)] transition-all font-black flex items-center gap-2"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;Activity size={20} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Web App</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* ヘッダーが固定化された分、下のコンテンツが隠れないようにするスペーサー */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="h-[40px] md:h-[48px]"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">// --- Landing Page Component ---</p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">function LandingPage({ navigateTo, currentView }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="w-full flex flex-col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;Navigation navigateTo={navigateTo} currentView={currentView} /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* Hero Section */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* pb（下の余白）とmin-h（最小の高さ）を減らして隙間を詰める */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;header className="pt-16 pb-8 md:pt-24 md:pb-12 px-4 relative overflow-hidden flex flex-col items-center justify-center min-h-[40vh] md:min-h-[50vh]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="absolute inset-0 border-[10px] border-white/10 m-4 md:m-8 rounded-3xl pointer-events-none"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="max-w-6xl mx-auto text-center relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="relative flex justify-center mb-6 md:mb-10 w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;img<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>src="https://drive.google.com/thumbnail?id=1fESk6eO2fWtMbzFEp1IkJsb4tYfQ5hke&amp;sz=w1000"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>alt="LUXE WAVE"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="w-[40vw] md:w-[25vw] max-w-xs object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-10 md:mb-12 leading-snug md:leading-tight tracking-tighter"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>スマホやPC&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>家電などの&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span className="relative inline-block mt-1 md:mt-2 mb-1 px-4 py-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span className="relative z-10 text-white drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]"&gt;電磁波&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="absolute inset-0 bg-red-600 transform -skew-x-12 z-0 shadow-[0_0_30px_rgba(220,38,38,0.8)]"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>から&lt;br className="md:hidden"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>あなたを守る</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* Main Content */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* pt（上の余白）を減らして、上のセクションとの距離を近づける */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;main className="max-w-7xl mx-auto px-6 pt-4 pb-12 md:pt-6 md:pb-20 space-y-20 md:space-y-28 relative z-10 w-full"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="grid md:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;ConcernBox title="電磁波過敏症とは？"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>電磁波にさらされる機会が増えたことで電磁波が原因で頭痛や睡眠障害が起こるのでは？という関心が高まっている。これを電磁波過敏症と呼ぶがWHOは2005年に「電磁波が原因である科学的証拠はない」と発表した。電磁波過敏症は、人によって症状が異なり、日常生活に影響を及ぼすこともある。しかし医学的な診断基準はなく電磁波との因果関係も証明されていない。欧州の研究機関などもWHOと同じ見解を示しており今のところ電磁波と健康被害の直接的な関係は確認されていない。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ConcernBox&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;ConcernBox title="電磁波と脳"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="mb-8 bg-[#050515]/80 h-48 flex items-center justify-center text-sm font-bold border border-white/10 rounded-lg relative overflow-hidden group p-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">               </span>&lt;div className="absolute inset-0 w-full h-full flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity duration-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div className="relative flex items-center justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>&lt;Brain size={100} className="text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]" strokeWidth={1.5} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>&lt;Wifi size={160} className="text-red-500 absolute drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] opacity-60 animate-pulse" strokeWidth={1} style={{ transform: 'rotate(45deg)' }} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>&lt;Zap size={50} className="text-fuchsia-400 absolute drop-shadow-[0_0_15px_rgba(232,121,249,0.8)]" strokeWidth={1.5} style={{ transform: 'translate(40px, -30px)' }} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">               </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">               </span>&lt;div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent z-10 pointer-events-none"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>1975年、カリフォルニア大学の研究で、電磁波がニワトリの脳細胞からカルシウムイオンを漏出させることが発見された。カルシウムは神経伝達や生殖に重要で、この影響は深刻と考えられる。同年、MITではバクテリアの磁石が発見され、人間の脳にも存在し、ホルモンや免疫機能を制御する可能性が指摘された。また、スウェーデンの研究で、電磁波被曝により血液脳関門が機能低下し有害物質が脳内に侵入することが確認された。メラトニンの減少は乳がんリスクを高める懸念がされている。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ConcernBox&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Section: Effects */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="effects-section" className="relative p-6 md:p-16 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] scroll-mt-24 overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 className="text-2xl md:text-5xl font-black text-white mb-10 md:mb-16 tracking-tighter flex items-center gap-3 md:gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span className="w-3 md:w-4 h-8 md:h-12 bg-gradient-to-b from-cyan-400 to-blue-600 rounded-full inline-block"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>LUXEWAVE起動時の効果</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 pt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;EffectItem<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>title="腰痛・肩こり・基礎体力向上"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc={</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>独自の電磁波変調技術により、生体電流の乱れを整えるようアプローチします。&lt;br /&gt;&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>滞りがちな血流をサポートすることで筋肉の緊張を和らげ、慢性的な肩こりや腰痛などの軽減が期待できます。&lt;br /&gt;&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>日々の基礎体力の底上げにも貢献します。</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>num="01"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;EffectItem<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>title="集中力・記憶力・ストレス軽減"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc={</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>専用の波形プロファイル（Focus Mode等）が、脳波を適切なリラックス＆集中状態へと誘導します。&lt;br /&gt;&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>長時間のPC作業やスマホ利用による「脳疲労」を軽減し、記憶力の維持や精神的なストレスの緩和効果が期待できます。</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>num="02"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;EffectItem<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>title="睡眠の質の向上・リカバリー"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc={</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>交感神経が優位になりがちな現代人の自律神経に働きかけ、副交感神経を優位に導く専用モード（Sleep Mode）を搭載。&lt;br /&gt;&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>寝付きの悪さや浅い眠りをサポートし、翌朝スッキリと目覚めるための深いリカバリー空間を創り出します。</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>num="03"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;EffectItem<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>title="美肌・エイジングケアサポート"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc={</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>電磁波ダメージによる強力な酸化ストレスや血行不良は、肌荒れやくすみの大きな原因になります。&lt;br /&gt;&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>これらを空間レベルで軽減することで、肌本来のターンオーバー（生まれ変わり）を正常なサイクルへと導き、ハリとツヤのある健やかな美肌作りをサポートします。</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>num="04"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Section: Artificial EMF Impact */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="space-y-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="text-center relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>人工電磁波の&lt;span className="text-red-500 mx-2 drop-shadow-[0_0_15px_rgba(220,38,38,0.8)]"&gt;悪影響&lt;/span&gt;とは</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-gray-400 font-bold tracking-widest mt-4"&gt;見えないリスクから身を守る&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="grid lg:grid-cols-2 gap-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{/* Table 1 &amp; Image */}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="rounded-xl border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="p-6 md:p-8 border-b border-white/10 bg-gradient-to-br from-white/5 to-transparent flex flex-col items-center gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="w-full aspect-[3/4] sm:aspect-square md:aspect-[4/5] bg-[#050515]/80 rounded-2xl flex items-center justify-center relative overflow-hidden group shadow-[0_0_30px_rgba(220,38,38,0.15)] border border-red-500/30"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;img<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                       </span>src="https://drive.google.com/thumbnail?id=1O2dtS0LykBi_MQbAr4Uy-rcdgqSJ_r6b&amp;sz=w1000"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                       </span>alt="電磁波の影響"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                       </span>className="absolute inset-0 w-full h-full object-contain p-2 opacity-90 group-hover:opacity-100 transition-opacity duration-500"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                     </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div className="absolute inset-0 bg-gradient-to-t from-red-500/20 to-transparent z-10 pointer-events-none"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="w-full text-center sm:text-left mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 className="text-2xl font-bold text-white mb-4 drop-shadow-md"&gt;私たちの体に何が起きているか&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-gray-300 text-sm md:text-base leading-relaxed font-medium text-justify sm:text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>人工電磁波は不自然で急激な波形を持っている為に身体へ侵入した際に様々な問題が発生します。</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="p-6 md:p-8 relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;h4 className="text-fuchsia-400 font-bold mb-4 flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;AlertTriangle size={18} /&gt; 主な懸念される症状</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;ul className="grid grid-cols-2 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{['皮膚疾患', '自律神経失調症', '頭痛、吐き気', '目まい', '疲労、うつ', '発ガン', '白血病', '電磁波過敏症', 'ホルモン分泌異常', '睡眠障害'].map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;li key={idx} className="flex items-center gap-2 text-gray-300 text-sm font-medium"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_5px_rgba(220,38,38,0.8)]"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{item}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Table 2 */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="rounded-xl border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="p-6 md:p-8 border-b border-white/10 bg-gradient-to-br from-white/5 to-transparent"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="w-full text-center sm:text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 className="text-2xl font-bold text-white mb-4 drop-shadow-md"&gt;身近な家電と電磁波リスク&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-gray-300 text-sm md:text-base leading-relaxed font-medium text-justify sm:text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>現代の生活環境における電磁波の実態です。スマホ以外にも危険な機器は日常に溢れています。</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="p-6 md:p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;DeviceMeter name="IHクッキングヒーター" value={80} color="bg-red-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;DeviceMeter name="電子レンジ" value={75} color="bg-orange-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;DeviceMeter name="スマートフォン" value={60} color="bg-yellow-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;DeviceMeter name="パソコン・TV" value={45} color="bg-cyan-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;DeviceMeter name="冷蔵庫" value={20} color="bg-blue-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;p className="text-xs text-gray-500 mt-6 text-center"&gt;※身近な家電製品からの電磁波発生レベルのイメージ図&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Section: Comparison &amp; BOS */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="rounded-3xl border border-white/10 bg-black/50 backdrop-blur-xl p-8 md:p-16 relative shadow-[0_8px_32px_rgba(0,0,0,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="grid md:grid-cols-2 gap-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h3 className="text-3xl md:text-4xl font-black text-white mb-8 border-b border-white/20 pb-4 relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>使用比較と総評</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="absolute bottom-[-1px] left-0 w-1/3 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 shadow-[0_0_10px_rgba(34,211,238,0.5)]"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;p className="font-medium leading-loose text-justify text-gray-300 text-base md:text-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>生体血液観察（BOS）を用いた独自の検証において、通信機器使用時に血液の状態になんらかの変化が見られるケースが確認されました。これが直ちに深刻な健康被害に直結するとは断言できませんが、長期間にわたる不自然な電磁波への曝露が、身体本来のバランスを崩す一因になるのではないかと私たちは懸念しています。&lt;br /&gt;&lt;br /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>現代は、日常的に多くの電子機器に囲まれており、目に見えないストレス要因が蓄積しやすい環境です。原因不明の不調（未病）を招く前に、日々の生活環境を見直し、テクノロジーと健やかに共存するための「新しい対策」を取り入れることが、これからの時代には必要不可欠だと考えています。</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h3 className="text-3xl md:text-4xl font-black text-white mb-8 border-b border-white/20 pb-4"&gt;生体血液観察 (BOS)&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="space-y-8 md:space-y-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="border border-white/20 bg-white/5 p-4 md:p-6 rounded-xl relative backdrop-blur-sm mt-4 md:mt-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="absolute top-0 left-0 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold px-2 md:px-4 py-0.5 md:py-1 -mt-3 md:-mt-4 ml-4 md:ml-6 rounded-sm text-[10px] sm:text-xs md:text-base"&gt;未使用時&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="grid grid-cols-2 gap-2 md:gap-6 mt-4 md:mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="aspect-square bg-black/50 rounded-lg flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-bold text-gray-500 border border-white/10 overflow-hidden px-1 text-center break-words"&gt;[Image 1]&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="aspect-square bg-black/50 rounded-lg flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-bold text-gray-500 border border-white/10 overflow-hidden px-1 text-center break-words"&gt;[Image 2]&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;p className="text-[10px] sm:text-xs md:text-base font-bold text-fuchsia-400 mt-4 md:mt-6 text-center border-t border-white/10 pt-4 drop-shadow-[0_0_5px_rgba(232,121,249,0.8)]"&gt;5G通信で活性酸素の極度ダメージを確認&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="border border-cyan-500/50 bg-cyan-900/20 p-4 md:p-6 rounded-xl relative backdrop-blur-sm shadow-[0_0_30px_rgba(34,211,238,0.1)] mt-8 md:mt-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="absolute top-0 left-0 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold px-2 md:px-4 py-0.5 md:py-1 -mt-3 md:-mt-4 ml-4 md:ml-6 rounded-sm shadow-[0_0_15px_rgba(34,211,238,0.5)] text-[10px] sm:text-xs md:text-base"&gt;LUXEWAVE 使用時&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="grid grid-cols-2 gap-2 md:gap-6 mt-4 md:mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="aspect-square bg-black/50 rounded-lg flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-bold text-gray-400 border border-cyan-500/30 overflow-hidden px-1 text-center break-words"&gt;[Image 3]&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="aspect-square bg-black/50 rounded-lg flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-bold text-gray-400 border border-cyan-500/30 overflow-hidden px-1 text-center break-words"&gt;[Image 4]&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Section: Pricing */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="pricing-section" className="relative scroll-mt-24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="text-center mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"&gt;PRICING&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-cyan-400 font-bold tracking-widest mt-3"&gt;料金プラン&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;PricingCard<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>level="LV.1"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title="Shield Lite"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>price="880"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>features={['基本防護プロファイル', '1デバイス対応', 'Discord連携', 'Focus Mode利用可能']}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;PricingCard<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>level="LV.2"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title="Shield Plus"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>price="1,980"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>features={['全防護プロファイル', '最大3デバイス対応', 'Discord連携', '優先サポート']}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>recommended={true}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;PricingCard<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>level="LV.3"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title="Shield Pro"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>price="3,300"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>features={['高度な防護プロファイル', '最大5デバイス', 'Discord連携', '24時間専任サポート']}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;PricingCard<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>level="LV.4"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title="Aura Pro"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>price="5,000"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>features={['最上位プロファイル', '無制限デバイス', 'Discord連携', '専任コンシェルジュ']}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>special={true}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* CTA Section */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="relative overflow-hidden rounded-3xl p-12 md:p-32 text-center border border-white/20 bg-[#050515]/80 backdrop-blur-2xl shadow-[0_0_50px_rgba(0,0,0,0.8)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-fuchsia-600/20 rounded-full mix-blend-screen filter blur-[100px] pointer-events-none"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter relative z-10 drop-shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>PROTECT YOUR &lt;span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500"&gt;FUTURE&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-medium leading-relaxed relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>これからの時代、電磁波から身を守ることは手洗いやうがいと同じように当たり前の習慣になります。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>onClick={() =&gt; navigateTo('webapp')}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>className="relative z-10 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-12 py-5 rounded-full text-xl md:text-2xl font-black tracking-widest hover:scale-105 hover:shadow-[0_0_40px_rgba(34,211,238,0.6)] transition-all duration-300 border border-cyan-400/50"</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>START NOW</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* Footer */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;footer className="w-full bg-[#02020a]/90 backdrop-blur-xl text-white pt-16 pb-12 px-6 border-t border-white/10 relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="max-w-5xl mx-auto flex flex-col items-center gap-8 mb-16 border-b border-white/10 pb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-2 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"&gt;LUXE WAVE&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="font-bold text-xs md:text-sm mb-1 text-gray-400"&gt;株式会社ダイバーズドリームシティ&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="font-black text-base md:text-lg text-cyan-400"&gt;Tel.050-6867-2292&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="flex flex-col items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-xs md:text-sm font-bold tracking-widest text-gray-400"&gt;詳細情報&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="w-20 h-20 bg-white/10 flex items-center justify-center text-white/50 font-bold text-[10px] border border-white/20 rounded-lg backdrop-blur-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>[QR]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="https://discord.com/" target="_blank" rel="noopener noreferrer" className="text-[10px] md:text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors underline underline-offset-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>Discord URL</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="max-w-5xl mx-auto border border-red-500/30 p-6 md:p-8 text-xs md:text-sm font-medium space-y-4 bg-red-900/10 backdrop-blur-md rounded-2xl relative shadow-[0_0_30px_rgba(220,38,38,0.1)] mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="absolute top-0 left-0 bg-red-600/80 backdrop-blur-md text-white font-bold px-4 py-1.5 -mt-4 ml-6 text-xs md:text-sm flex items-center gap-2 rounded-sm shadow-[0_0_15px_rgba(220,38,38,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;AlertTriangle size={16} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>免責事項・情報に関する注記</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="text-red-400 font-bold"&gt;【未確認情報に関する明記】&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="leading-loose text-gray-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>本ウェブサイト（および元となる資料）に記載されている「電磁波の健康への影響」「生体血液観察(BOS)の結果解釈」、ならびに「LUXE WAVEサービスによる身体的効果」に関する記述には、科学的・医学的に広く合意・確証が得られていない&lt;span className="text-red-400 font-bold mx-1"&gt;『未確認』&lt;/span&gt;の情報が含まれています。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="leading-loose text-gray-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>本サービスは健康の維持・サポートを目的としたものであり、医療機器ではありません。疾病の診断、治療、予防を目的とするものではなく、身体的な異常を感じる場合は専門の医療機関にご相談ください。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="text-center font-bold text-gray-600 mt-16 text-xs md:text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&amp;copy; {new Date().getFullYear()} Divers Dream City Co., Ltd.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">// --- About Page Component ---</p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">function AboutPage({ navigateTo, currentView }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="w-full flex flex-col min-h-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;Navigation navigateTo={navigateTo} currentView={currentView} /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* Main Content */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;main className="flex-grow max-w-5xl mx-auto px-6 py-20 space-y-24 relative z-10 w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header className="text-center pt-10 pb-10 border-b border-white/10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h1 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tighter drop-shadow-md flex flex-col md:flex-row items-center justify-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ABOUT<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;img<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>src="https://drive.google.com/thumbnail?id=1fESk6eO2fWtMbzFEp1IkJsb4tYfQ5hke&amp;sz=w1000"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>alt="LUXE WAVE"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="h-8 md:h-12 object-contain"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="text-lg md:text-xl text-gray-400 font-bold tracking-widest mt-2 md:mt-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>LUXE WAVEとは？</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-16 relative shadow-[0_8px_32px_rgba(0,0,0,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 className="text-2xl md:text-3xl font-black text-white mb-8 flex items-center gap-3 border-b border-white/20 pb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;Info className="text-cyan-400" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>開発の背景とコンセプト</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="space-y-6 text-gray-300 leading-loose text-base md:text-lg font-medium text-justify"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>現代社会において、スマートフォンやWi-Fiなどの通信機器は生活に欠かせないものとなりました。しかし同時に、私たちが日常的に浴びている人工電磁波の量は、かつての自然界のレベルと比べて一兆倍以上に達しているとも言われています。</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>「朝から体がだるい」「頭が重い」といった原因不明の不調を訴える人が増える中、私たちは「見えないリスクから心身を守る」ための新しいアプローチが必要だと考えました。</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-cyan-100 font-bold border-l-4 border-cyan-500 pl-4 bg-cyan-900/20 p-4 rounded-r-lg shadow-[inset_0_0_20px_rgba(34,211,238,0.1)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>LUXE WAVEは、独自の電磁波変調技術を活用し、身体への電磁波ダメージを軽減・サポートすることを目指して開発された次世代のヘルスケア・アプリケーションです。</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="space-y-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 className="text-2xl md:text-3xl font-black text-white text-center tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>電磁波に関する研究と懸念</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="grid md:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;ConcernBox title="電磁波と脳"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="mb-6 bg-[#050515]/80 h-40 flex items-center justify-center text-sm font-bold border border-white/10 rounded-lg relative overflow-hidden group p-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div className="absolute inset-0 w-full h-full flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity duration-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>&lt;div className="relative flex items-center justify-center scale-90"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;Brain size={100} className="text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]" strokeWidth={1.5} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;Wifi size={160} className="text-red-500 absolute drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] opacity-60 animate-pulse" strokeWidth={1} style={{ transform: 'rotate(45deg)' }} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;Zap size={50} className="text-fuchsia-400 absolute drop-shadow-[0_0_15px_rgba(232,121,249,0.8)]" strokeWidth={1.5} style={{ transform: 'translate(40px, -30px)' }} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent z-10 pointer-events-none"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>1975年、カリフォルニア大学の研究で、電磁波がニワトリの脳細胞からカルシウムイオンを漏出させることが発見された。カルシウムは神経伝達や生殖に重要で、この影響は深刻と考えられる。スウェーデンの研究で、電磁波被曝により血液脳関門が機能低下し有害物質が脳内に侵入することが確認された。特に子どもの脳は電磁波の影響を受けやすく、関連が懸念されている。</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ConcernBox&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;ConcernBox title="電磁波環境の危険性"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>携帯電話基地局周辺の住民に頭痛、不眠症、高血圧等の症状が報告されている。また、携帯電話を10年以上使用し続けると脳腫瘍になる恐れの指摘もされ、イギリスなどでは16歳未満は携帯電話使用の禁止を勧告している。国立環境研究所は「送電線近くで小児急性リンパ性白血病が4.7倍、脳腫瘍が10.6倍になった」という調査結果を発表した。</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ConcernBox&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;footer className="w-full bg-[#02020a]/90 backdrop-blur-xl text-white pt-16 pb-12 px-6 border-t border-white/10 mt-auto relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="max-w-5xl mx-auto border border-red-500/30 p-6 md:p-8 text-xs md:text-sm font-medium space-y-4 bg-red-900/10 backdrop-blur-md rounded-2xl relative shadow-[0_0_30px_rgba(220,38,38,0.1)] mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="absolute top-0 left-0 bg-red-600/80 backdrop-blur-md text-white font-bold px-4 py-1.5 -mt-4 ml-6 text-xs md:text-sm flex items-center gap-2 rounded-sm shadow-[0_0_15px_rgba(220,38,38,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;AlertTriangle size={16} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>免責事項・情報に関する注記</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="leading-loose text-gray-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>本ウェブサイト（および元となる資料）に記載されている情報には、科学的・医学的に広く合意・確証が得られていない&lt;span className="text-red-400 font-bold mx-1"&gt;『未確認』&lt;/span&gt;の情報が含まれています。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="text-center font-bold text-gray-600 text-xs md:text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&amp;copy; {new Date().getFullYear()} Divers Dream City Co., Ltd.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">// --- News Page Component ---</p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">function NewsPage({ navigateTo, currentView }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const newsItems = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ date: '2026.02.26', category: 'お知らせ', title: 'LUXE WAVE Web App β版をリリースいたしました。' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ date: '2026.02.15', category: 'アップデート', title: '新しい波形プロファイル「Sleep Mode」を追加しました。' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ date: '2026.01.30', category: 'メディア', title: '次世代ヘルスケア特集にてLUXE WAVEが紹介されました。' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ date: '2025.12.10', category: 'お知らせ', title: '15日間無料トライアルキャンペーン開始のお知らせ' },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="w-full flex flex-col min-h-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;Navigation navigateTo={navigateTo} currentView={currentView} /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;main className="flex-grow max-w-4xl mx-auto px-6 py-20 space-y-12 relative z-10 w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header className="text-center pt-10 pb-10 border-b border-white/10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500 mb-4 tracking-tighter drop-shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Blog</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="text-lg md:text-xl text-gray-400 font-bold tracking-widest"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>電磁波に関する知識やお知らせ📢</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-6 md:p-12 relative shadow-[0_8px_32px_rgba(0,0,0,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{newsItems.map((item, index) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div key={index} className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 border-b border-white/10 pb-4 group cursor-pointer hover:bg-white/5 p-4 rounded-xl transition-colors"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex items-center gap-4 shrink-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;span className="text-gray-400 font-medium text-sm md:text-base"&gt;{item.date}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;span className={`text-xs font-bold px-3 py-1 rounded-full border ${</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>item.category === 'お知らせ' ? 'border-cyan-500/50 text-cyan-300 bg-cyan-900/30' :</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>item.category === 'アップデート' ? 'border-fuchsia-500/50 text-fuchsia-300 bg-fuchsia-900/30' :</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>'border-purple-500/50 text-purple-300 bg-purple-900/30'</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{item.category}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 className="text-white font-bold text-base md:text-lg group-hover:text-cyan-400 transition-colors"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{item.title}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;footer className="w-full bg-[#02020a]/90 backdrop-blur-xl text-white pt-16 pb-12 px-6 border-t border-white/10 mt-auto relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="text-center font-bold text-gray-600 text-xs md:text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&amp;copy; {new Date().getFullYear()} Divers Dream City Co., Ltd.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">// --- Member Page Component ---</p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">function MemberPage({ navigateTo, currentView }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const handleLogin = (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>navigateTo('webapp');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="w-full flex flex-col min-h-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;Navigation navigateTo={navigateTo} currentView={currentView} /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;main className="flex-grow max-w-lg mx-auto px-6 py-20 w-full flex flex-col justify-center relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header className="text-center mb-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500 mb-3 tracking-tighter drop-shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>MEMBER LOGIN</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="text-sm md:text-base text-gray-400 font-bold tracking-widest"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>会員専用ページ</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 relative shadow-[0_8px_32px_rgba(0,0,0,0.5)]"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;form onSubmit={handleLogin} className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;label className="block text-xs font-bold text-cyan-400 mb-2 tracking-widest uppercase"&gt;Email Address / ID&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>type="text"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>placeholder="example@luxewave.com"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>className="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;label className="block text-xs font-bold text-cyan-400 mb-2 tracking-widest uppercase"&gt;Password&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>type="password"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>placeholder="••••••••"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>className="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex items-center justify-between text-xs font-medium"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;label className="flex items-center gap-2 cursor-pointer text-gray-400 hover:text-white transition-colors"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="checkbox" className="accent-cyan-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ログイン状態を保持する</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button type="button" className="text-fuchsia-400 hover:text-fuchsia-300 transition-colors"&gt;パスワードをお忘れですか？&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>type="submit"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3.5 rounded-xl hover:shadow-[0_0_20px_rgba(34,211,238,0.5)] transition-all mt-4"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>ログイン</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/form&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="mt-8 pt-8 border-t border-white/10 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-xs text-gray-500 mb-4 font-bold"&gt;または別のアカウントでログイン&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>type="button"</p>
+<p class="p1"><span class="Apple-converted-space">              </span>onClick={() =&gt; window.open('https://discord.com/', '_blank')}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="w-full flex items-center justify-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold py-3 rounded-xl transition-all"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>Discordでログイン</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;footer className="w-full bg-[#02020a]/90 backdrop-blur-xl text-white pt-16 pb-12 px-6 border-t border-white/10 mt-auto relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="text-center font-bold text-gray-600 text-xs md:text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&amp;copy; {new Date().getFullYear()} Divers Dream City Co., Ltd.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">// --- Dashboard (Web App) Component ---</p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">function Dashboard({ navigateTo, currentView }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [isActive, setIsActive] = useState(false);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="w-full flex flex-col min-h-screen"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* トップページと同じ共通ヘッダーメニューを配置 */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;Navigation navigateTo={navigateTo} currentView={currentView} /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* --- Dashboard Main Content --- */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;main className="flex-grow max-w-6xl mx-auto px-6 py-12 md:py-20 w-full relative z-10"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Header area */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header className="mb-10 border-b border-white/10 pb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="flex flex-col md:flex-row justify-between items-center gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="text-center md:text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h1 className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500 tracking-tighter drop-shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>WEB APP DASHBOARD</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;p className="text-gray-400 font-bold tracking-widest mt-2 text-sm"&gt;システムの稼働状況&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>{/* Status &amp; Level Indicator */}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex flex-col sm:flex-row items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-3 text-sm font-bold"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span className="text-gray-400"&gt;Status:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{isActive ? (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;span className="text-cyan-400 flex items-center gap-2 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;Shield size={16} /&gt; PROTECTED</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;span className="text-gray-500 flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;AlertTriangle size={16} /&gt; STANDBY</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="flex items-center gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span className="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs md:text-sm font-bold px-3 py-1.5 rounded-lg shadow-[0_0_15px_rgba(34,211,238,0.4)] border border-white/10 tracking-widest"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>Level.1</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span className="text-cyan-400 font-black text-base md:text-lg tracking-widest drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>Shield Lite</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="grid lg:grid-cols-3 gap-8 md:gap-12"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>{/* Main Control Panel */}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;section className="lg:col-span-2 space-y-8"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>{/* Power Switch Card */}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className={`relative overflow-hidden rounded-3xl border ${isActive ? 'border-cyan-500/50 shadow-[0_0_30px_rgba(34,211,238,0.15)] bg-cyan-900/10' : 'border-white/10 bg-white/5'} backdrop-blur-xl p-8 md:p-12 transition-all duration-500 flex flex-col items-center justify-center min-h-[400px] md:min-h-[500px]`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="absolute top-6 left-6 text-xs md:text-sm font-bold text-gray-500 tracking-widest uppercase z-20"&gt;SYSTEM CONTROL&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Background Effect based on state */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className={`absolute inset-0 transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-0'}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/40 to-blue-900/20 mix-blend-screen"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border border-white/5 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border border-white/5 animate-[ping_4s_cubic-bezier(0,0,0.2,1)_infinite]"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Giant Power Button */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>onClick={() =&gt; setIsActive(!isActive)}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>className={`relative z-10 group w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center transition-all duration-500 ${</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>isActive<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>? 'bg-[#050515] shadow-[inset_0_0_30px_rgba(34,211,238,0.2),0_0_50px_rgba(34,211,238,0.4)] border-4 border-cyan-500'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>: 'bg-black/50 shadow-[inset_0_0_20px_rgba(0,0,0,0.5),0_10px_20px_rgba(0,0,0,0.5)] border-4 border-[#2a2a4a] hover:border-gray-500'</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className={`absolute inset-2 rounded-full border-2 border-dashed ${isActive ? 'border-white/20 animate-[spin_10s_linear_infinite]' : 'border-white/5'}`}&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;Power<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>size={72}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>strokeWidth={1.5}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>className={`transition-all duration-500 ${</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>isActive<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>? 'text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,1)] scale-110'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>: 'text-gray-600 group-hover:text-gray-400'</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>}`}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* ON/OFF 表記 */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h2 className={`mt-8 text-3xl md:text-4xl font-black tracking-widest transition-colors duration-500 relative z-10 ${isActive ? 'text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]' : 'text-gray-600'}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{isActive ? 'ON' : 'OFF'}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>{/* Stats Sidebar */}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;aside className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h3 className="text-white font-bold mb-6 flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;Activity className="text-cyan-400" size={20} /&gt; System Status</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;StatMeter label="Protection Level" value={isActive ? "98%" : "0%"} color={isActive ? "bg-cyan-400" : "bg-gray-600"} percent={isActive ? 98 : 0} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;StatMeter label="Wave Output" value={isActive ? "Active" : "Idle"} color={isActive ? "bg-fuchsia-400" : "bg-gray-600"} percent={isActive ? 75 : 0} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;StatMeter label="Device Temp" value="32°C" color="bg-blue-400" percent={40} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">               </span>&lt;h3 className="text-white font-bold mb-4"&gt;Active Profile&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">               </span>&lt;div className="bg-black/50 rounded-xl p-4 border border-white/5 relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p className="text-xs text-gray-400 font-bold mb-1"&gt;CURRENT STATUS&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p className={`text-xl font-black capitalize ${</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>isActive ? 'text-cyan-400' : 'text-gray-500'</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>{isActive ? 'Shield Active' : 'Standby'}</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p className="text-sm text-gray-300 mt-2 font-medium leading-relaxed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>{isActive ? '電磁波ダメージを軽減する基本防護プロファイルを出力しています。' : 'システムは待機状態です。中央の電源ボタンを押して保護を開始してください。'}</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div className="mt-4 pt-4 border-t border-white/10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="text-[10px] text-gray-500 flex items-start gap-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;AlertTriangle size={12} className="shrink-0 mt-0.5 text-amber-500/70" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span&gt;本表示の防護レベルや効果は、『未確認情報』に基づく表現です。&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">               </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/main&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>{/* 共通のシンプルなフッター */}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;footer className="w-full bg-[#02020a]/90 backdrop-blur-xl text-white pt-16 pb-12 px-6 border-t border-white/10 mt-auto relative z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="text-center font-bold text-gray-600 text-xs md:text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&amp;copy; {new Date().getFullYear()} Divers Dream City Co., Ltd.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================================</p>
+<p class="p1">// --- Helper Components ---</p>
+<p class="p1">// ============================================================================</p>
+<p class="p2"><br></p>
+<p class="p1">function EffectItem({ title, desc, num }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="bg-black/40 border border-white/10 p-6 md:p-8 rounded-2xl backdrop-blur-md hover:bg-white/5 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.3)] h-full flex flex-col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="flex items-center gap-4 mb-4 md:mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-transparent leading-none"&gt;{num}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3 className="text-lg md:text-xl font-bold text-white leading-tight"&gt;{title}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p className="text-sm md:text-base text-gray-400 font-medium leading-relaxed"&gt;{desc}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function ConcernBox({ title, children }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="bg-black/40 border border-white/10 p-6 md:p-8 rounded-2xl backdrop-blur-md relative shadow-[0_8px_32px_rgba(0,0,0,0.5)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3 className="text-xl md:text-2xl font-black text-white mb-4 md:mb-6 border-b border-white/10 pb-4 text-cyan-400"&gt;{title}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="text-sm md:text-base text-gray-300 leading-loose font-medium text-justify"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{children}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function DeviceMeter({ name, value, color }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="flex justify-between items-end mb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span className="text-sm font-bold text-gray-300"&gt;{name}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="h-2.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className={`h-full ${color} shadow-[0_0_10px_currentColor]`} style={{ width: `${value}%` }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function StatMeter({ label, value, color, percent }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="flex justify-between items-end mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span className="text-xs font-bold text-gray-400"&gt;{label}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span className="text-sm font-black text-white"&gt;{value}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>className={`h-full ${color} transition-all duration-1000 ease-out`}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>style={{ width: `${percent}%` }}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function PricingCard({ title, level, price, features, recommended = false, special = false }) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [isSelected, setIsSelected] = React.useState(false);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const borderClass = isSelected</p>
+<p class="p1"><span class="Apple-converted-space">    </span>? 'border-cyan-400 bg-cyan-900/30 shadow-[0_0_30px_rgba(34,211,238,0.8)] scale-[1.02] z-30'</p>
+<p class="p1"><span class="Apple-converted-space">    </span>: special<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>? 'border-fuchsia-500 bg-gradient-to-b from-fuchsia-900/40 to-[#050515]/80 shadow-[0_0_30px_rgba(232,121,249,0.3)] md:-translate-y-2 z-20 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(232,121,249,0.6)]'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>: recommended<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>? 'border-cyan-400 bg-gradient-to-b from-cyan-900/40 to-[#050515]/80 shadow-[0_0_30px_rgba(34,211,238,0.2)] md:-translate-y-4 z-10 hover:shadow-[0_0_30px_rgba(34,211,238,0.6)]'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>: 'border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const titleColor = special ? 'from-fuchsia-400 to-purple-500' : 'from-cyan-400 to-blue-500';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>className={`relative p-6 lg:p-8 rounded-3xl border ${borderClass} transition-all duration-300 flex flex-col h-full cursor-pointer`}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>onClick={() =&gt; setIsSelected(!isSelected)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{recommended &amp;&amp; !special &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">         </span>&lt;div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-6 py-1.5 rounded-full text-[10px] md:text-xs font-bold tracking-widest shadow-[0_0_15px_rgba(232,121,249,0.5)] whitespace-nowrap z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">           </span>RECOMMENDED</p>
+<p class="p1"><span class="Apple-converted-space">         </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{special &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">         </span>&lt;div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-500 to-amber-500 text-white px-6 py-1.5 rounded-full text-[10px] md:text-xs font-bold tracking-widest shadow-[0_0_15px_rgba(245,158,11,0.5)] whitespace-nowrap z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">           </span>PREMIUM</p>
+<p class="p1"><span class="Apple-converted-space">         </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span className="text-xs font-bold text-gray-400 tracking-widest uppercase"&gt;{level}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3 className="text-xl lg:text-2xl font-black text-white mt-1"&gt;{title}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="mb-6 border-b border-white/10 pb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span className={`text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${titleColor}`}&gt;¥{price}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span className="text-gray-400 text-sm font-bold ml-1"&gt;/ 月&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul className="flex-1 space-y-4 mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{features.map((f, i) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;li key={i} className="flex items-start gap-3 text-xs lg:text-sm font-medium text-gray-300 leading-relaxed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;Check size={16} className={`${special ? 'text-fuchsia-400' : 'text-cyan-400'} shrink-0 mt-0.5`} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{f}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>onClick={(e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>e.stopPropagation();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (isSelected) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.open('https://e-wave.jp/p/r/OzoQdhtG', '_blank');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setIsSelected(true);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>className={`w-full py-3 lg:py-4 rounded-xl font-bold transition-all text-sm tracking-widest mt-auto ${</p>
+<p class="p1"><span class="Apple-converted-space">          </span>isSelected</p>
+<p class="p1"><span class="Apple-converted-space">            </span>? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-[0_0_20px_rgba(34,211,238,0.5)]'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>: special<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>? 'bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white hover:shadow-[0_0_20px_rgba(232,121,249,0.5)] hover:-translate-y-1'</p>
+<p class="p1"><span class="Apple-converted-space">              </span>: recommended<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.5)] hover:-translate-y-1'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>: 'bg-white/10 text-white hover:bg-white/20 border border-white/20 hover:-translate-y-1'</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{isSelected ? 'このプランで申し込む' : '選択する'}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+</body>
+</html>
