@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- Apple Watchの画面にぴったり合わせ、拡大縮小を禁止する設定 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>LUXE WAVE Watch</title>
   
@@ -20,7 +19,6 @@
   <style>
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    /* 余白を完全に消し、黒背景にする */
     body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #000; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     #root { width: 100%; height: 100%; }
   </style>
@@ -31,14 +29,13 @@
   <script type="text/babel" data-type="module">
     import React, { useState, useEffect } from "react";
     import { createRoot } from "react-dom/client";
-    import { Power, Shield, Activity, Zap, Menu, X, Settings, HeartPulse, Sparkles } from "lucide-react";
+    import { Power, Shield, Activity, Zap, Menu, X, Home, Info, CreditCard, ExternalLink, User } from "lucide-react";
 
     function WatchApp() {
       const [isActive, setIsActive] = useState(false);
       const [isMenuOpen, setIsMenuOpen] = useState(false);
       const [time, setTime] = useState("10:09");
 
-      // 時計の更新
       useEffect(() => {
         const timer = setInterval(() => {
           const now = new Date();
@@ -46,29 +43,25 @@
           const minutes = String(now.getMinutes()).padStart(2, '0');
           setTime(`${hours}:${minutes}`);
         }, 1000);
-        // コンポーネントマウント時に即座に時間を設定
         const now = new Date();
         setTime(`${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`);
-        
         return () => clearInterval(timer);
       }, []);
 
       return (
         <div className="w-full h-full bg-[#050515] flex flex-col p-4 relative overflow-hidden text-white">
           
-          {/* Background Effects */}
           <div className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'}`}>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cyan-500/20 rounded-full blur-xl"></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] border border-cyan-500/20 rounded-full animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
           </div>
 
-          {/* Status Bar */}
           <div className="w-full flex justify-between items-center z-20 relative mb-4">
             <button 
               onClick={() => setIsMenuOpen(true)}
               className="text-gray-400 hover:text-white transition-colors p-1"
             >
-              <Menu size={20} />
+              <Menu size={24} />
             </button>
 
             <span className="text-sm font-bold text-gray-300 tracking-wider absolute left-1/2 -translate-x-1/2">
@@ -76,13 +69,12 @@
             </span>
 
             {isActive ? (
-              <Shield size={16} className="text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]" />
+              <Shield size={18} className="text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]" />
             ) : (
-              <Zap size={16} className="text-gray-600" />
+              <Zap size={18} className="text-gray-600" />
             )}
           </div>
 
-          {/* Main App Content */}
           <div className="flex-1 flex flex-col items-center justify-center w-full z-10">
             <button 
               onClick={() => setIsActive(!isActive)}
@@ -112,52 +104,59 @@
             </div>
           </div>
 
-          {/* Bottom Info */}
           <div className="w-full flex justify-between items-end z-10 pt-4">
             <div className="flex flex-col">
               <span className="text-[10px] text-gray-500 font-bold uppercase">Profile</span>
               <span className="text-sm text-white font-bold">LV.1</span>
             </div>
-            <Activity size={18} className={isActive ? "text-fuchsia-400 animate-pulse" : "text-gray-700"} />
+            <Activity size={20} className={isActive ? "text-fuchsia-400 animate-pulse" : "text-gray-700"} />
           </div>
 
           {/* Menu Overlay */}
           <div className={`absolute inset-0 bg-[#0a0a1a]/95 backdrop-blur-xl z-30 flex flex-col p-4 transition-all duration-300 ${
             isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'
           }`}>
-            <div className="flex justify-between items-center mb-4">
-              <span className="text-xs font-bold text-gray-400 tracking-widest">MENU</span>
-              <button onClick={() => setIsMenuOpen(false)} className="text-gray-400 hover:text-white bg-white/10 rounded-full p-1.5">
-                <X size={16} />
+            <div className="flex justify-between items-center mb-5">
+              <span className="text-sm font-bold text-gray-400 tracking-widest">MENU</span>
+              <button onClick={() => setIsMenuOpen(false)} className="text-gray-400 hover:text-white bg-white/10 rounded-full p-2">
+                <X size={20} />
               </button>
             </div>
             
-            <div className="flex-1 overflow-y-auto space-y-3 hide-scrollbar pb-6">
+            <div className="flex-1 overflow-y-auto space-y-4 hide-scrollbar pb-6">
+              {/* 現在のWeb Appの画面を閉じるためのボタン */}
               <MenuButton 
-                icon={<Power size={18} />} 
-                label="メインシールド" 
+                icon={<Activity size={22} />} 
+                label="Web App" 
                 isActive={true}
                 onClick={() => setIsMenuOpen(false)} 
               />
+              
+              {/* メインサイトへのリンク */}
               <MenuButton 
-                icon={<HeartPulse size={18} />} 
-                label="ヘルスケア" 
-                onClick={() => setIsMenuOpen(false)} 
+                icon={<Home size={22} />} 
+                label="ホーム" 
+                onClick={() => window.location.href = 'index.html'} 
               />
               <MenuButton 
-                icon={<Activity size={18} />} 
-                label="出力ステータス" 
-                onClick={() => setIsMenuOpen(false)} 
+                icon={<Info size={22} />} 
+                label="ABOUT" 
+                onClick={() => window.location.href = 'index.html'} 
               />
               <MenuButton 
-                icon={<Sparkles size={18} />} 
-                label="WAVE AI 診断" 
-                onClick={() => setIsMenuOpen(false)} 
+                icon={<CreditCard size={22} />} 
+                label="プライス" 
+                onClick={() => window.location.href = 'index.html'} 
               />
               <MenuButton 
-                icon={<Settings size={18} />} 
-                label="設定" 
-                onClick={() => setIsMenuOpen(false)} 
+                icon={<ExternalLink size={22} />} 
+                label="Blog" 
+                onClick={() => window.open('https://note.com/luxewave/n/nc021cb5e0c3d?sub_rt=share_pw', '_blank')} 
+              />
+              <MenuButton 
+                icon={<User size={22} />} 
+                label="会員ページ" 
+                onClick={() => window.location.href = 'index.html'} 
               />
             </div>
           </div>
@@ -170,7 +169,7 @@
       return (
         <button 
           onClick={onClick}
-          className={`w-full flex items-center gap-3 px-4 py-4 rounded-2xl transition-all ${
+          className={`w-full flex items-center gap-4 px-4 py-5 rounded-2xl transition-all ${
             isActive 
               ? 'bg-cyan-900/40 border border-cyan-500/50 text-cyan-300' 
               : 'bg-white/10 border border-white/5 text-gray-300 active:bg-white/20'
@@ -179,7 +178,7 @@
           <div className={`${isActive ? 'text-cyan-400' : 'text-gray-400'}`}>
             {icon}
           </div>
-          <span className="text-sm font-bold tracking-wider">{label}</span>
+          <span className="text-base font-bold tracking-wider">{label}</span>
         </button>
       );
     }
